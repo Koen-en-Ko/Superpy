@@ -1,0 +1,48 @@
+INSTRUCTIONS FOR SUPERPY
+
+1. Initialize application
+Running 'python3 main.py init' creates the bought.csv and sold.csv files if they don't exist and creates or refreshes a 'day.csv' file with the date of today, which can be modified for reports and overviews.
+
+2. Change date
+Running 'python3 main.py time-change --advance_date {int}' advances the time with the integer given. This overwrites the date given by the 'day.csv' file.
+
+EXAMPLE: python3 main.py time-change --advance_date 4
+
+3. Buy
+Running 'python3 main.py buy --product_name {str} --price {float} --exp_date {str YYYY-MM-DD}' adds an item to the inventory. These bought items are added to the file named 'bought.csv'.
+
+EXAMPLE: python3 main.py buy --product_name pineapple --price 4.99 --exp_date 2024-03-14
+
+4. Sell
+Running 'python3 main.py sell --product_name {str} --price {float}' sells an item, if the item is in stock. The sold items are added to the file named 'sold.csv'.
+
+EXAMPLE: python3 main.py sell --product_name butter --price 7.35
+
+5. Report
+
+5.1 Report inventory
+Running 'python3 main.py report --inventory' creates an inventory report, both in the terminal and in 'inventory.csv'. You can specify --today, --yesterday or --date {str YYYY-MM-DD} to see an inventory report from a specific day. If not specified, --today is default.
+
+EXAMPLE: python3 main.py report --inventory --today
+
+5.2 Report revenue
+Running 'python3 main.py report --revenue' returns the revenue. You can specify --today, --yesterday --last_week or --date 
+{str YYYY-MM-DD} to get the revenue from a specific day. If not specified, --today is default. Use --last_week with --show_graph
+to see a bar graph of last week's revenue.
+
+EXAMPLE: python3 main.py report --revenue --last_week --show_graph
+
+5.3 Report profit
+Running 'python3 main.py report --profit' returns the profit. You can specify --today, --yesterday --last_week or --date {str YYYY-MM-DD} to get the profit from a specific day. If not specified, --today is default. Use --last_week with --show_graph to see a bar graph of last week's profit.
+
+EXAMPLE: python3 main.py report --profit --today --show_graph
+
+6. Export
+
+6.1 Export Expired Items to csv
+Running 'python3 main.py export --expired_items' creates a .csv file with all items past the expiration date, currently in stock.
+
+EXAMPLE: python3 main.py export --expired_items
+
+6.2 Export duplicate items to csv
+Running 'python3 main.py export --double_items' creates a .csv file with all duplicate items, which are currently in stock.
